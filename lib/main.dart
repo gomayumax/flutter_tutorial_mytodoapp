@@ -49,14 +49,17 @@ class TodoListPage extends StatelessWidget {
         ],
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: (){
+        onPressed: () async {
           //pushで新規画面に遷移
-          Navigator.of(context).push(
+          final newListText = await Navigator.of(context).push(
             MaterialPageRoute(builder: (context) {
               // 遷移先の画面としてリスト追加画面を指定
               return TodoAddPage();
             })
           );
+          if (newListText != null) {
+            // キャンセルした場合はnullになる
+          }
         },
         child: Icon(Icons.add),
       ),
