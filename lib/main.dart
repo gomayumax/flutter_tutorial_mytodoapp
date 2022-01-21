@@ -64,7 +64,14 @@ class TodoListPage extends StatelessWidget {
   }
 }
 
-class TodoAddPage extends StatelessWidget {
+class TodoAddPage extends StatefulWidget {
+  @override
+  _TodoAddPageState createState() => _TodoAddPageState();
+}
+
+class _TodoAddPageState extends State<TodoAddPage> {
+  String _text = '';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -73,7 +80,20 @@ class TodoAddPage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            TextField(),
+            // 入力されたテキストを表示
+            Text(_text, style: TextStyle(color: Colors.blue)),
+            const SizedBox(height: 8),
+            // テキスト入力
+            TextField(
+              // 入力されたテキストの値を受け取る（valueが入力されたテキスト）
+              onChanged: (String value) {
+                // データが変更したことを知らせる（画面を更新する）
+                setState(() {
+                  // データを変更
+                  _text = value;
+                });
+              },
+            ),
             const SizedBox(height: 8),
             Container(
               width: double.infinity,
